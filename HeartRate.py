@@ -41,6 +41,7 @@ def read_plot(filename, rid):
 
         print(filename, ': ', len(vals))
         plt.title(filename)
+        plt.scatter(times, vals, color = 'g')
         plt.plot(times, vals)
         plt.show()
 
@@ -50,7 +51,7 @@ if __name__ == '__main__':
 
     paths = ['E:\\reference.txt', 'E:\\facemean.txt']
 
-    RID = ['50']
+    RID = ['16']
 
     for file in paths:
         read_plot(file, RID)

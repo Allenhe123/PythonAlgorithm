@@ -14,12 +14,17 @@ import math
 # print(np.eye(2))
 
 # 2x2
-a = np.matrix('1 2; 2 0');
-# 2x1
-b = np.matrix('2;3');
-# 1x2
-c = np.matrix('5 9');
+# a = np.matrix('1 2; 2 0');
+# # 2x1
+# b = np.matrix('2;3');
+# # 1x2
+# c = np.matrix('5 9');
+#
+# print(a * b * c)
+# print((a * b) * c)
+# print(a * (b * c))
 
-print(a * b * c)
-print((a * b) * c)
-print(a * (b * c))
+a = 0.999
+b = 0.5
+print(math.pow(a, 20))
+print(math.pow(b, 20))

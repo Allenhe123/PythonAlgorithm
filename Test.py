@@ -1,6 +1,8 @@
 import numpy as np
 import math
 
+from functools import reduce
+
 # print(np.eye(4,3))
 # x = np.zeros((4,3))
 # print(x)
@@ -24,7 +26,17 @@ import math
 # print((a * b) * c)
 # print(a * (b * c))
 
-a = 0.999
-b = 0.5
-print(math.pow(a, 20))
-print(math.pow(b, 20))
+# a = 0.999
+# b = 0.5
+# print(math.pow(a, 20))
+# print(math.pow(b, 20))
+
+'''
+在 Python3 中，reduce() 函数已经被从全局名字空间里移除了，它现在被放置在 fucntools 模块里，
+如果想要使用它，则需要通过引入 functools 模块来调用 reduce() 函数：
+'''
+reducevalue1 = reduce(lambda x,y : x + y, [1,2,3,4,5], 1)
+print (reducevalue1)
+
+reducevalue2 = reduce(lambda x,y : x + y, [1,2,3,4,5])
+print (reducevalue2)

@@ -2,6 +2,12 @@ import sys, os, dlib, glob
 import numpy as np
 from skimage import io
 
+'''
+http://dlib.net/
+
+http://dlib.net/python/
+
+'''
 
 print('the battle begin...')
 

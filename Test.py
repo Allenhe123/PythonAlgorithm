@@ -13,7 +13,7 @@ from functools import reduce
 # F = np.matrix('1 0 0.1 0; 0 1 0 0.1; 0 0 1 0; 0 0 0 1')
 # print(F)
 
-# print(np.eye(2))
+print(np.eye(6))
 
 # 2x2
 # a = np.matrix('1 2; 2 0');
@@ -35,8 +35,8 @@ from functools import reduce
 在 Python3 中，reduce() 函数已经被从全局名字空间里移除了，它现在被放置在 fucntools 模块里，
 如果想要使用它，则需要通过引入 functools 模块来调用 reduce() 函数：
 '''
-reducevalue1 = reduce(lambda x,y : x + y, [1,2,3,4,5], 1)
-print (reducevalue1)
-
-reducevalue2 = reduce(lambda x,y : x + y, [1,2,3,4,5])
-print (reducevalue2)
+# reducevalue1 = reduce(lambda x,y : x + y, [1,2,3,4,5], 1)
+# print (reducevalue1)
+#
+# reducevalue2 = reduce(lambda x,y : x + y, [1,2,3,4,5])
+# print (reducevalue2)

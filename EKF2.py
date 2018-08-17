@@ -44,6 +44,12 @@ for k in range(0, int(len)):
 observed_x = Z[:,0]
 observed_y = Z[:,1]
 
+
+ax = []
+ay = []
+bx = []
+by = []
+
 def kalman(x, P, measurement, R, Q, F, H, B, u):
     '''
     Parameters:
@@ -72,6 +78,10 @@ def kalman(x, P, measurement, R, Q, F, H, B, u):
     x = F * x + B * u
     P = F * P * F.T + Q
 
+    ax.append(x[0,0])
+    ay.append(x[1,0])
+    print('(',x[0,0], ',', x[1,0], ')')
+
     # 更新卡尔曼增益
     S = H * P * H.T + R  # 计算卡尔曼增益时候的分母
     K = P * H.T * S.I    # 卡尔曼增益
@@ -79,6 +89,12 @@ def kalman(x, P, measurement, R, Q, F, H, B, u):
     # 更新估计值
     y = np.matrix(measurement).T - H * x
     x = x + K * y
+
+    bx.append(x[0,0])
+    by.append(x[1,0])
+    print('(', x[0,0], ',', x[1,0], ')')
+    print(' ')
+    print(' ')
 
     # 更新估计值的方差
     # P = P - K * H * P
@@ -109,9 +125,14 @@ def demo_kalman_xy():
 
     kalman_x, kalman_y = zip(*result)
 
-    plt.plot(X[:, 0], X[:, 1])
+    # plt.plot(X[:, 0], X[:, 1])
     plt.plot(observed_x, observed_y, 'bo')
     plt.plot(kalman_x, kalman_y, color = 'r')
+    plt.show()
+
+    plt.figure()
+    plt.plot(ax, ay, color = 'g')
+    plt.plot(bx, by, color = 'r')
     plt.show()
 
 demo_kalman_xy()

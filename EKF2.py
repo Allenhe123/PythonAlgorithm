@@ -12,15 +12,15 @@ import numpy as np
 
 t = 15        # 仿真时间
 Ts = 0.1      # 采样周期
-len = t / Ts  # 仿真步数
+length = t / Ts  # 仿真步数
 
 # 增加加速度
-X = np.zeros((int(len), 6))
+X = np.zeros((int(length), 6))
 X[0,:] = np.array([0, 0, 1, 1, 0, 0]) # 状态模拟的初值(x, y, vx, vy, ax, ay)
 
-Z = np.zeros((int(len), 2))
+Z = np.zeros((int(length), 2))
 
-for i in range(1, int(len)):
+for i in range(1, int(length)):
     x0 = X[i - 1, 0]
     y0 = X[i - 1, 1]
     vx0 = X[i - 1, 2]
@@ -35,7 +35,7 @@ for i in range(1, int(len)):
     ay1 = ay0 + (random.random() - 0.5) * 2
     X[i,:] = [x1, y1, vx1, vy1, ax1, ay1]
 
-for k in range(0, int(len)):
+for k in range(0, int(length)):
     x = X[k, 0] +  5 * (random.random() - 0.5)
     y = X[k, 1] +  5 * (random.random() - 0.5)
     Z[k:] = [x, y]
@@ -49,6 +49,7 @@ ax = []
 ay = []
 bx = []
 by = []
+distances = []
 
 def kalman(x, P, measurement, R, Q, F, H, B, u):
     '''
@@ -130,9 +131,19 @@ def demo_kalman_xy():
     plt.plot(kalman_x, kalman_y, color = 'r')
     plt.show()
 
+    idx = []
+    for i in range(len(ax)):
+        idx.append(i)
+        dis = math.sqrt( (ax[i] - bx[i]) * (ax[i] - bx[i]) + (ay[i] - by[i]) * (ay[i] - by[i])  )
+        distances.append(dis)
+
     plt.figure()
     plt.plot(ax, ay, color = 'g')
     plt.plot(bx, by, color = 'r')
+    plt.show()
+
+    plt.figure()
+    plt.plot(idx, distances, color='g')
     plt.show()
 
 demo_kalman_xy()

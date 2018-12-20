@@ -1,8 +1,11 @@
 import numpy as np
 import math
+import timeit
 
 '''
-Python中提供了list容器，可以当作数组使用。但列表中的元素可以是任何对象，因此列表中保存的是对象的指针，这样一来，为了保存一个简单的列表[1,2,3]。就需要三个指针和三个整数对象。
+nump - 高度优化的多维数组支持  scipy - 通过这些数组提供了一套快速的数值分析方法库
+Python中提供了list容器，可以当作数组使用。但列表中的元素可以是任何对象，因此列表中保存的是对象的指针，
+这样一来，为了保存一个简单的列表[1,2,3]。就需要三个指针和三个整数对象。
 对于数值运算来说，这种结构显然不够高效。
 Python虽然也提供了array模块，但其只支持一维数组，不支持多维数组，也没有各种运算函数。因而不适合数值运算。
 NumPy的出现弥补了这些不足。
@@ -67,7 +70,7 @@ print (np.exp(a)) # 指数
 a = np.array([[1,2],[3,4]])      # 2行2列
 b = np.arange(6).reshape((2,-1)) # 2行3列
 print( a, b )
-print( a.dot(b) ) # 2行3列
+print( a.dot(b) ) # 2个矩阵相乘，输出为2行3列的一个矩阵
 
 ## 非数组运算，调用方法
 a = np.random.randint(0, 5, (2, 3))
@@ -91,7 +94,8 @@ a[:6:2] = -100;                    # 从开始到第6个索引，每隔一个元
 print (a)
 print (a[: :-1])                   # 将a逆序输出，a本身未发生改变
 print (a)
-b = [np.sqrt(np.abs(i)) for i in a]; print (b)    # 通过遍历赋值
+b = [np.sqrt(np.abs(i)) for i in a];    # 通过遍历赋值
+print (b)
 
 
 ## 多维数组
@@ -119,7 +123,45 @@ print('-----------------------------------------')
 ## 补充：reshape和resize
 a = np.array([[1, 2, 3], [4, 5, 6]])
 b = a
-a.reshape((3,2))        # 不改变数组本身的形状
+c = a.reshape((3,2)).copy()        # 不改变数组本身的形状
 print (a)
+print(c)
 b.resize((3,2))         # 改变数组本身形状
 print (b)
+print(a)        # a  == b  浅拷贝
+print(a.shape)
+
+a = np.arange(0, 6, 1)
+print(a)
+b = a.clip(0, 4)
+print(a)
+print(b)
+
+a = np.array([1, 2, np.NAN, 3, 4])
+print(a)
+print(np.isnan(a), a.dtype)
+b = a[~np.isnan(a)]
+print(b)
+
+print(np.mean(a[~np.isnan(a)]))
+
+a = np.array([1, "string"])
+print(a, a.dtype)
+a = np.array([1, "str", set([1,2,4])])
+print(a, a.dtype)
+
+###############################################################################
+# 在要实现的算法中，要考虑如何将数组元素的循环处理从python中移到一些高度优化的numpy或者scipy扩展函数中。
+'''
+normal py: 0.944195 seconds
+native np: 0.795126 seconds
+good np: 0.012351 seconds
+'''
+
+normal_py_sec = timeit.timeit('sum(x*x for x in range(1000))', number=10000)
+native_np_sec = timeit.timeit('sum(na*na)', setup="import numpy as np; na=np.arange(1000)", number=10000)
+good_np_sec = timeit.timeit('na.dot(na)', setup="import numpy as np; na=np.arange(1000)", number=10000)
+print("normal py: %f seconds" %normal_py_sec)
+print("native np: %f seconds" %native_np_sec)
+print("good np: %f seconds" %good_np_sec)
+

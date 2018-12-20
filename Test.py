@@ -13,7 +13,7 @@ from functools import reduce
 # F = np.matrix('1 0 0.1 0; 0 1 0 0.1; 0 0 1 0; 0 0 0 1')
 # print(F)
 
-print(np.eye(6))
+# print(np.eye(6))
 
 # 2x2
 # a = np.matrix('1 2; 2 0');
@@ -40,3 +40,18 @@ print(np.eye(6))
 #
 # reducevalue2 = reduce(lambda x,y : x + y, [1,2,3,4,5])
 # print (reducevalue2)
+
+
+a = [8, 1, 2, 10, 9, 6, 7, 8, 0, 4, 19, 22, 3]
+maxv = 0
+sndMaxv = 0
+maxIdx = 0
+sndMaxIdx = 0
+for i in range(len(a)):
+    if a[i] > maxv:
+        sndMaxv = maxv
+        sndMaxIdx = maxIdx
+        maxv = a[i]
+        maxIdx = i
+
+print(maxv, maxIdx, sndMaxv, sndMaxIdx)

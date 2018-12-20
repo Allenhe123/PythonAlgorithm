@@ -1,6 +1,5 @@
 import numpy as np
-import math
-import scipy
+import scipy as sp
 
 '''
 based on the effective data structures of numpy, scipy provides the senior algorithm applications.
@@ -24,4 +23,4 @@ special - 特殊数学函数如贝塞尔函数，雅可比函数
 stats - 统计学工具包
 '''
 
-print(scipy.dot is np.dot)
+# print(scipy.dot is np.dot)

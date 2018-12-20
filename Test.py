@@ -42,16 +42,29 @@ from functools import reduce
 # print (reducevalue2)
 
 
-a = [8, 1, 2, 10, 9, 6, 7, 8, 0, 4, 19, 22, 3]
-maxv = 0
-sndMaxv = 0
-maxIdx = 0
-sndMaxIdx = 0
-for i in range(len(a)):
-    if a[i] > maxv:
-        sndMaxv = maxv
-        sndMaxIdx = maxIdx
-        maxv = a[i]
-        maxIdx = i
+# a = [8, 1, 2, 10, 9, 6, 7, 8, 0, 4, 19, 22, 3]
+# maxv = 0
+# sndMaxv = 0
+# maxIdx = 0
+# sndMaxIdx = 0
+# for i in range(len(a)):
+#     if a[i] > maxv:
+#         sndMaxv = maxv
+#         sndMaxIdx = maxIdx
+#         maxv = a[i]
+#         maxIdx = i
+#
+# print(maxv, maxIdx, sndMaxv, sndMaxIdx)
 
-print(maxv, maxIdx, sndMaxv, sndMaxIdx)
+import scipy as sp
+import os
+
+a = [1,2,3,4]
+b = [10,20,30,40]
+c = zip(a, b)
+d = list(c)
+print(d)
+path = os.path.realpath(__file__)
+path = os.path.dirname(path)
+print(path)
+sp.savetxt(os.path.join(path, "a.tsv"), d, delimiter="\t", fmt="%s")

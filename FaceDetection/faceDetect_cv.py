@@ -9,7 +9,7 @@ def detect_impl(img):
     color = (0, 255, 0)
 
     # OpenCV人脸识别分类器
-    classifier_file = os.path.join(os.getcwd(), '../files/haarcascade_frontalface_default.xml')
+    classifier_file = os.path.join(os.getcwd(), '../data/haarcascade_frontalface_default.xml')
     # print(os.path.isfile(classifier_file))
 
     classifier = cv2.CascadeClassifier(classifier_file)

@@ -18,11 +18,11 @@ print('the battle begin...')
 
 # 1.人脸关键点检测器   shape_predictor_68_face_landmarks.dat是已经训练好的人脸关键点检测器。
 # predictor_path = sys.argv[1]
-predictor_path =  '../files/shape_predictor_68_face_landmarks.dat'
+predictor_path =  '../data/shape_predictor_68_face_landmarks.dat'
 
 # 2.人脸识别模型  dlib_face_recognition_resnet_model_v1.dat是训练好的ResNet人脸识别模型
 # face_rec_model_path = sys.argv[2]
-face_rec_model_path = '../files/dlib_face_recognition_resnet_model_v1.dat'
+face_rec_model_path = '../data/dlib_face_recognition_resnet_model_v1.dat'
 
 # 3.候选人脸文件夹
 # faces_folder_path = sys.argv[3]

@@ -17,7 +17,7 @@ def detect_impl(img):
     # 人脸分类器
     detector = dlib.get_frontal_face_detector()
     # 获取人脸检测器
-    detector_file = os.path.join(os.getcwd(), '../files/shape_predictor_68_face_landmarks.dat')
+    detector_file = os.path.join(os.getcwd(), '../data/shape_predictor_68_face_landmarks.dat')
     predictor = dlib.shape_predictor(detector_file)
 
     dets = detector(gray, 1)
@@ -57,8 +57,9 @@ def detect_video():
             right = face.right()
             bottom = face.bottom()
             cv2.rectangle(img, (left, top), (right, bottom), (0, 255, 0), 2)
-            cv2.imshow("image", img)
+            # cv2.imshow("image", img)
         ######
+        cv2.imshow("image", img)
         frmCnt += 1
         time1 = time.time()
         if (time1 - time0 >= 1.0):

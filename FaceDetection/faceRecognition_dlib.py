@@ -4,32 +4,21 @@ from skimage import io
 
 '''
 http://dlib.net/
-
 http://dlib.net/python/
-
 '''
 
 print('the battle begin...')
 
-
-# if len(sys.argv) != 5:
-#     print('check parameters')
-#     exit(0)
-
 # 1.人脸关键点检测器   shape_predictor_68_face_landmarks.dat是已经训练好的人脸关键点检测器。
-# predictor_path = sys.argv[1]
 predictor_path =  '../data/shape_predictor_68_face_landmarks.dat'
 
 # 2.人脸识别模型  dlib_face_recognition_resnet_model_v1.dat是训练好的ResNet人脸识别模型
-# face_rec_model_path = sys.argv[2]
 face_rec_model_path = '../data/dlib_face_recognition_resnet_model_v1.dat'
 
 # 3.候选人脸文件夹
-# faces_folder_path = sys.argv[3]
 faces_folder_path = '../training-images'
 
 # 4.需识别的人脸
-# img_path = sys.argv[4]
 img_path = '../test-images'
 
 # 1.加载正脸检测器
@@ -89,9 +78,9 @@ for f in glob.glob(os.path.join(faces_folder_path, "*.jpg")):
 
 
 # 对需识别人脸进行同样处理
-# 提取描述子，不再注释
+# 提取描述子
 for f in glob.glob(os.path.join(img_path, "*.jpg")):
-    print("Testing file: {}".format(f))
+    print("\n Testing file: {}".format(f))
     img = io.imread(f)
     dets = detector(img, 1)
 
@@ -113,6 +102,7 @@ for f in glob.glob(os.path.join(img_path, "*.jpg")):
     # 候选人和距离组成一个dict
     c_d = dict(zip(candidate, dist))
     cd_sorted = sorted(c_d.items(), key=lambda d:d[1])  # 根据dist中的距离由小到大排序c_d.items()这个list
-    print("\n The person is: ", cd_sorted[0][0])
+    print("The person is: ", cd_sorted[0][0])
+    print(" distance is: ", cd_sorted[0][1])
 
 dlib.hit_enter_to_continue()

@@ -28,8 +28,10 @@ def detect_impl(img):
             pt_pos = (pt.x, pt.y)
             cv2.circle(img, pt_pos, 2, (0, 255, 0), 1)
 
+        cv2.rectangle(img, (face.left(), face.top()), (face.right(), face.bottom()), (0, 255, 0), 2)
+
 def detect_img():
-    file = os.path.join(os.getcwd(), '../test-images/timg3.jpg')
+    file = os.path.join(os.getcwd(), '../test-images/cl1.jpg')
     img = cv2.imread(file)
 
     detect_impl(img)
@@ -74,5 +76,5 @@ def detect_video():
     cv2.destroyAllWindows()  # 释放窗口资源
 
 if __name__ == '__main__':
-    # detect_img()
-    detect_video()
+    detect_img()
+    # detect_video()
